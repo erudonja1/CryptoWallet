@@ -9,7 +9,12 @@ import Foundation
 
 class CoinPresentationMapper {
     func fromDomain(domainModel: CoinDetailsDomainModel) -> CoinPresentationModel {
-        CoinPresentationModel(id: domainModel.id, name: domainModel.name)
+        CoinPresentationModel(id: domainModel.id,
+                              name: domainModel.name,
+                              ticker: domainModel.ticker,
+                              price: domainModel.price,
+                              percentChange24h: domainModel.percentChange24h,
+                              logo: domainModel.logo)
     }
     
     func fromDomain(domainModels: [CoinDetailsDomainModel]) -> [CoinPresentationModel] {

@@ -55,14 +55,27 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        80.0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.getData().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueCell(withType: CoinTableViewCell.self, for: indexPath)
-        //cell.textLabel?.text  = "\(indexPath.row)"
+        let models = viewModel?.getData() ?? []
+        let cell: CoinTableViewCell = tableView.dequeueCell(withType: CoinTableViewCell.self, for: indexPath)
+        cell.setup(model: models[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let models = viewModel?.getData() ?? []
+        let model = models[indexPath.row]
+        
+        if let _ = model.logo { return }
+        viewModel?.fetchDetails(for: model.id)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

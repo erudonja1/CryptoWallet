@@ -9,7 +9,15 @@ import Foundation
 
 class CoinDetailsDomainMapper {
     func fromData(dataModel: CoinDetailsDataModel) -> CoinDetailsDomainModel {
-        CoinDetailsDomainModel(id: dataModel.id, name: dataModel.name)
+        CoinDetailsDomainModel(id: dataModel.id,
+                               name: dataModel.name,
+                               ticker: dataModel.ticker,
+                               price: dataModel.price,
+                               percentChange24h: dataModel.percentChange24h,
+                               volume24h: dataModel.volume24h,
+                               marketCap: dataModel.marketCap,
+                               circulatingSupply: dataModel.circulatingSupply,
+                               logo: dataModel.logo)
     }
     
     func fromData(dataModels: [CoinDetailsDataModel]) -> [CoinDetailsDomainModel] {

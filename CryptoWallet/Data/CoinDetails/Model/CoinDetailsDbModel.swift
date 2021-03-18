@@ -10,5 +10,11 @@ import Foundation
 struct CoinDetailsDbModel {
     let id: Int
     let name: String
-    let logo: String?
+    let ticker: String
+    let price: Float
+    let percentChange24h: Float
+    let volume24h: Float
+    let marketCap: Float
+    let circulatingSupply: Float
+    var logo: String?
 }
